@@ -39,6 +39,7 @@
     var status = document.getElementById('form-status');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (!form.reportValidity()) { return; }
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = 'Sending\u2026';

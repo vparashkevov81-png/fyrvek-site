@@ -71,6 +71,8 @@ section{padding:88px 0}
 .nav-links a{color:var(--midnight-90);font-weight:500;font-size:.97rem}
 .nav-links a:hover{color:var(--blue);text-decoration:none}
 .nav-links .btn{padding:11px 20px;font-size:.94rem}
+.nav-links a.btn-primary{color:#fff}
+.nav-links a.btn-primary:hover{color:#fff;background:#233250}
 .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .menu-btn svg{width:26px;height:26px;color:var(--midnight)}
 @media(max-width:860px){
