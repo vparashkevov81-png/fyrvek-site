@@ -230,3 +230,16 @@ textarea{min-height:120px;resize:vertical}
 .page-hero .lead{max-width:680px;margin-top:18px}
 .breadcrumb{font-size:.88rem;color:var(--neutral);margin-bottom:18px}
 .breadcrumb a{color:var(--neutral)}
+
+/* ---------- Work page ---------- */
+.work-item{padding:44px 0;border-top:1px solid var(--line)}
+.work-item:first-child{border-top:0;padding-top:0}
+.work-head h2{margin:10px 0 8px}
+.work-tags{font-family:var(--font-display);font-weight:500;font-size:.85rem;letter-spacing:.04em;color:var(--blue);margin-bottom:12px}
+.work-desc{max-width:720px;color:var(--neutral);margin-bottom:18px}
+.work-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.work-gallery:has(figure:only-child){grid-template-columns:minmax(0,720px)}
+@media(max-width:820px){.work-gallery{grid-template-columns:1fr}}
+.work-gallery figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.work-gallery img{width:100%;height:auto}
+.work-gallery figcaption{padding:10px 14px;font-size:.82rem;color:var(--neutral)}
