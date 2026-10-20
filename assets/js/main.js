@@ -50,7 +50,7 @@
       }).then(function (r) { return r.json(); }).then(function (data) {
         if (data.success) {
           form.reset();
-          status.textContent = 'Received. You will hear back within one business day with a real reply, written by the person who read your message.';
+          status.textContent = 'Thanks, your message is in. I reply within 24 hours on working days.';
           status.className = 'form-status ok';
         } else {
           throw new Error(data.message || 'Submission failed');

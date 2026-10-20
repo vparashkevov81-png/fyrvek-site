@@ -243,3 +243,52 @@ textarea{min-height:120px;resize:vertical}
 .work-gallery figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
 .work-gallery img{width:100%;height:auto}
 .work-gallery figcaption{padding:10px 14px;font-size:.82rem;color:var(--neutral)}
+
+/* ---------- v2: starter offer, email-first home ---------- */
+.nav-links{gap:24px}
+@media(max-width:1020px) and (min-width:861px){.nav-links{gap:16px}.nav-links a{font-size:.9rem}}
+.hero-shot{position:relative;max-width:440px;justify-self:end;width:100%}
+.hero-shot figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 40px rgba(15,23,42,.10)}
+.hero-shot img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.hero-shot figcaption{padding:10px 14px;font-size:.82rem;color:var(--neutral)}
+.hero-shot .tag{position:absolute;left:-14px;bottom:56px;background:var(--midnight);color:#fff;border-radius:10px;padding:10px 14px;font-size:.85rem;box-shadow:0 8px 20px rgba(15,23,42,.18)}
+.hero-shot .tag b{display:block;font-family:var(--font-display);font-size:1.05rem}
+@media(max-width:920px){.hero-shot{justify-self:start}.hero-shot .tag{left:12px}}
+.offer{display:grid;grid-template-columns:1.2fr .8fr;gap:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.offer .o-main{padding:34px}
+.offer .o-side{background:var(--midnight);color:#CBD5E1;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.offer .o-side .price{color:#fff}
+.offer .o-side .price small{color:#94A3B8}
+.offer .o-side p{font-size:.95rem}
+.offer .o-side .btn{margin-top:18px;text-align:center}
+.offer h2{margin:6px 0 14px}
+@media(max-width:820px){.offer{grid-template-columns:1fr}}
+.checks{list-style:none;margin:6px 0 0}
+.checks li{padding:8px 0 8px 30px;position:relative;font-size:.97rem;border-top:1px solid var(--line)}
+.checks li:first-child{border-top:0}
+.checks li::before{content:'';position:absolute;left:2px;top:13px;width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") no-repeat}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:720px){.shots{grid-template-columns:1fr}}
+.shot{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.shot img{width:100%;aspect-ratio:5/4;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+.shot .s-body{padding:22px 24px}
+.shot h3{margin:4px 0 6px}
+.shot p{color:var(--neutral);font-size:.95rem}
+.me{display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center}
+@media(max-width:720px){.me{grid-template-columns:1fr}}
+.photo{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;background:var(--midnight);display:flex;align-items:center;justify-content:center}
+.photo img{width:100%;height:100%;max-height:none;object-fit:cover}
+.photo svg{width:38%;color:#fff}
+.facts{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 4px}
+.facts li{background:var(--blue-soft);color:var(--midnight);border-radius:999px;padding:6px 14px;font-size:.88rem;font-weight:500}
+.facts a{color:var(--midnight);text-decoration:underline}
+.dark .facts li{background:#16213A;color:#E2E8F0}
+.dark .facts a{color:#E2E8F0}
+.small-services .card h3{font-size:1.05rem}
+.founder .photo{aspect-ratio:4/5}
+.work-group{margin:10px 0 6px}
+.work-group h2{font-size:1.4rem;color:var(--neutral);font-weight:500}
+.work-gallery.two{grid-template-columns:1.25fr 1fr;align-items:start}
+@media(max-width:820px){.work-gallery.two{grid-template-columns:1fr}}
+.photo img ~ svg{display:none}
+.checks.no li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E")}
