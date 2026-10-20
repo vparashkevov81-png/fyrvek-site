@@ -64,4 +64,25 @@
       });
     });
   }
+  /* Carousels: arrows + counter */
+  document.querySelectorAll('[data-carousel]').forEach(function (c) {
+    var track = c.querySelector('.c-track');
+    var slides = track.children;
+    var count = c.querySelector('.c-count');
+    var btns = c.querySelectorAll('.c-btn');
+    function step() { return slides[0].getBoundingClientRect().width + 18; }
+    function update() {
+      var i = Math.round(track.scrollLeft / step());
+      var visible = Math.max(1, Math.round(track.clientWidth / step()));
+      count.textContent = Math.min(i + 1, slides.length) + ' / ' + slides.length;
+      btns[0].disabled = track.scrollLeft < 4;
+      btns[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4 || i + visible >= slides.length;
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { track.scrollBy({ left: step() * Number(b.dataset.dir), behavior: 'smooth' }); });
+    });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
 })();
