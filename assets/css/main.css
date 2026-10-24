@@ -464,3 +464,12 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px var(--blue-soft)}
 .hero-halden .hs-row figure{box-shadow:0 14px 30px rgba(60,40,20,.14)}
 .hero-halden .hs-note{position:static;font-size:.8rem;color:var(--neutral);margin:4px 0 0}
 @media(max-width:920px){.hero-halden{max-width:560px}}
+.build-block{margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+.build-block h3{margin:0 0 8px}
+.build-block>p{max-width:720px;color:var(--neutral);margin:0 0 20px}
+.build-flows{display:grid;grid-template-columns:repeat(2,minmax(0,340px));gap:18px;align-items:start}
+@media(max-width:620px){.build-flows{grid-template-columns:minmax(0,340px)}}
+.build-block figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.build-block img{width:100%;height:auto;display:block}
+.build-block figcaption{padding:10px 14px;font-size:.82rem;color:var(--neutral)}
+.build-wide{max-width:698px;margin-top:18px !important}
