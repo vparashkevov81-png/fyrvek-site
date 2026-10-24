@@ -85,4 +85,11 @@
     window.addEventListener('resize', update);
     update();
   });
+  /* Mobile sticky CTA: show after the hero */
+  var sticky = document.querySelector('.sticky-cta');
+  if (sticky) {
+    var onS = function () { sticky.classList.toggle('show', window.scrollY > 640); };
+    window.addEventListener('scroll', onS, { passive: true });
+    onS();
+  }
 })();
