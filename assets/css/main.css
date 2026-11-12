@@ -591,3 +591,12 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px var(--blue-soft)}
 @media(max-width:480px){.ap-rows div{grid-template-columns:1fr;gap:2px}}
 @media(min-width:921px){.hw-grid{padding:56px 24px}}
 @media(min-width:921px){.cert-badge{top:24px;bottom:auto}}
+
+/* How to start */
+.hs-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:h}
+.hs-steps li{counter-increment:h;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 24px;position:relative}
+.hs-steps li:before{content:counter(h);display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#D9763F;color:#1B1612;font-weight:700;margin-bottom:16px}
+.hs-steps b{display:block;color:var(--midnight);font-size:1.05rem;margin-bottom:6px}
+.hs-steps span{color:var(--neutral);font-size:.93rem;line-height:1.5}
+@media(max-width:920px){.hs-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.hs-steps{grid-template-columns:1fr}}

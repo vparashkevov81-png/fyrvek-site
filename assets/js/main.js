@@ -49,8 +49,14 @@
         body: new FormData(form)
       }).then(function (r) { return r.json(); }).then(function (data) {
         if (data.success) {
+          var svc = (form.querySelector('#service') || {}).value;
+          var msgs = {
+            'free-audit': 'Thanks, your free audit request is in. I will sign up to your store and send you three written fixes within 5 working days.',
+            'starter': 'Thanks, your request is in. Within 24 hours on working days you get a written quote with a fixed price, scope and dates.',
+            'audit': 'Thanks, your Journey Audit request is in. Within 24 hours on working days I confirm the details and what access I need.'
+          };
           form.reset();
-          status.textContent = 'Thanks, your message is in. I reply within 24 hours on working days.';
+          status.textContent = msgs[svc] || 'Thanks, your message is in. I reply within 24 hours on working days.';
           status.className = 'form-status ok';
         } else {
           throw new Error(data.message || 'Submission failed');
