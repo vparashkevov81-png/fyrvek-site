@@ -51,7 +51,7 @@
         if (data.success) {
           var svc = (form.querySelector('#service') || {}).value;
           var msgs = {
-            'free-audit': 'Thanks, your free audit request is in. I will sign up to your store and send you three written fixes within 5 working days.',
+            'free-audit': 'Thanks, your free audit request is in. Within 5 working days you get three written fixes for your emails.',
             'starter': 'Thanks, your request is in. Within 24 hours on working days you get a written quote with a fixed price, scope and dates.',
             'audit': 'Thanks, your Journey Audit request is in. Within 24 hours on working days I confirm the details and what access I need.'
           };
