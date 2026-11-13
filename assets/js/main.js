@@ -55,6 +55,20 @@
             'starter': 'Thanks, your request is in. Within 24 hours on working days you get a written quote with a fixed price, scope and dates.',
             'audit': 'Thanks, your Journey Audit request is in. Within 24 hours on working days I confirm the details and what access I need.'
           };
+          try {
+            var fd = new FormData(form);
+            var nm = String(fd.get('name') || '').trim();
+            var labels = {'free-audit':'a free email audit','starter':'a welcome flow and pop-up','audit':'a Journey Audit','retention':'a Retention Sprint','conversion':'a Conversion Sprint','creative':'Campaign Creative','launch':'a Launch Sprint','partnership':'monthly email work','unsure':'your project'};
+            fetch('https://a.klaviyo.com/client/events/?company_id=UYKBJg', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json', 'revision': '2024-10-15'},
+              body: JSON.stringify({data:{type:'event',attributes:{
+                properties:{service: svc || 'unsure', service_label: labels[svc] || 'your project', store_url: String(fd.get('store_url') || '').replace(/^https?:\/\//,'').replace(/\/$/,''), source:'fyrvek.com contact form'},
+                metric:{data:{type:'metric',attributes:{name:'Submitted Contact Form'}}},
+                profile:{data:{type:'profile',attributes:{email: String(fd.get('email') || '').trim(), first_name: nm.split(/\s+/)[0] || undefined}}}
+              }}})
+            }).catch(function(){});
+          } catch (err) {}
           form.reset();
           status.textContent = msgs[svc] || 'Thanks, your message is in. I reply within 24 hours on working days.';
           status.className = 'form-status ok';
