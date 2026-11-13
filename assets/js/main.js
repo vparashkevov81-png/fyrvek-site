@@ -44,9 +44,17 @@
       btn.disabled = true;
       btn.textContent = 'Sending\u2026';
       status.className = 'form-status';
+      var payload = new FormData(form);
+      var selEl = form.querySelector('#service');
+      var svcName = selEl && selEl.selectedIndex > -1 ? selEl.options[selEl.selectedIndex].text : '';
+      var whoName = String(payload.get('name') || '').trim().replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      if (svcName) { payload.set('service', svcName); }
+      var svcShort = svcName.replace(/\s*\(.*\)$/, '');
+      payload.set('subject', (selEl && selEl.value !== 'unsure' && svcShort ? svcShort + ' request' : 'New enquiry') + ' from ' + (whoName || 'fyrvek.com'));
+      payload.set('from_name', 'FYRVEK website');
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: new FormData(form)
+        body: payload
       }).then(function (r) { return r.json(); }).then(function (data) {
         if (data.success) {
           var svc = (form.querySelector('#service') || {}).value;
