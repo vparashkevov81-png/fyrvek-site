@@ -160,3 +160,39 @@
   addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});
   addEventListener('resize',update);update();
 })();
+
+/* Ad lab: hooks by awareness level */
+(function(){
+  var lab=document.querySelector('.adlab');if(!lab)return;
+  var ads=[
+    {tx:'Turn your protein tub around. If the label says “proprietary blend”, you have no idea how much of anything is inside.',h:'Every dose on the front of the label',c:'Learn more'},
+    {tx:'25 g of whey isolate per scoop. Low carbs, no added sugar, and every dose printed on the front. Third-party tested for banned substances.',h:'Whey Isolate, nothing hidden',c:'Shop now'},
+    {tx:'Still thinking about HALDEN? Take 15% off your first order with WELCOME15. Not for you? Your money back within 30 days.',h:'15% off your first order',c:'Get 15% off'}
+  ];
+  var els={tx:lab.querySelector('[data-ad="tx"]'),h:lab.querySelector('[data-ad="h"]'),c:lab.querySelector('[data-ad="c"]')};
+  var btns=[].slice.call(lab.querySelectorAll('.hook')),cur=0,timer=null,user=false;
+  function show(i){if(i===cur)return;cur=i;
+    btns.forEach(function(b,k){var on=k===i;b.classList.toggle('on',on);b.setAttribute('aria-selected',on?'true':'false');});
+    Object.keys(els).forEach(function(k){els[k].classList.add('is-swap');});
+    setTimeout(function(){Object.keys(els).forEach(function(k){els[k].textContent=ads[i][k];els[k].classList.remove('is-swap');});},220);}
+  btns.forEach(function(b,k){b.addEventListener('click',function(){user=true;clearInterval(timer);show(k);});});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting&&!user&&!timer){timer=setInterval(function(){show((cur+1)%3);},4200);}
+      if(!e.isIntersecting&&timer){clearInterval(timer);timer=null;}});},{threshold:.4});
+    io.observe(lab);
+  }
+})();
+
+/* Funnel checklist */
+(function(){
+  var f=document.querySelector('.funnel');if(!f)return;
+  var boxes=[].slice.call(f.querySelectorAll('input[type=checkbox]')),cnt=f.querySelector('.fn-count'),msg=f.querySelector('.fn-msg');
+  function upd(){var n=boxes.filter(function(b){return b.checked;}).length;
+    var miss=boxes.map(function(b){return b.checked?null:b.closest('label').querySelector('b').textContent;}).filter(Boolean);
+    cnt.textContent=n+' of 6';
+    if(n===0)msg.textContent='Tick the flows you have to see what is missing.';
+    else if(n===6)msg.textContent='All six stages covered. The free audit checks how well each one actually works.';
+    else msg.textContent='Missing: '+miss.join(', ')+'. The free audit shows which one to fix first.';}
+  boxes.forEach(function(b){b.addEventListener('change',upd);});
+})();
