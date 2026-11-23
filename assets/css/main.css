@@ -818,3 +818,19 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px var(--blue-soft)}
 .photo:before{content:"";position:absolute;inset:0;background:radial-gradient(70% 55% at 30% 25%,rgba(255,122,89,.28),transparent 70%)}
 .photo svg{position:relative;width:42%;color:#FF7A59;filter:drop-shadow(0 18px 30px rgba(0,0,0,.35))}
 .photo:after{content:"FYRVEK";position:absolute;bottom:9%;left:0;right:0;text-align:center;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;letter-spacing:.42em;color:#F4FBF8;font-size:clamp(.9rem,1.6vw,1.15rem);padding-left:.42em}
+/* Language switch */
+.nav-links .lang-sw{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:32px;padding:0 10px;border:1px solid rgba(244,251,248,.35);border-radius:99px;font-size:.8rem;font-weight:700;letter-spacing:.08em}
+.nav-links .lang-sw:hover{border-color:#FFB199;text-decoration:none}
+.pc-grid.two{grid-template-columns:repeat(2,1fr);max-width:860px}
+@media(max-width:980px){.pc-grid.two{grid-template-columns:1fr}}
+/* Cyrillic subsets for the Bulgarian version */
+@font-face{font-family:'Inter';src:url('../fonts/inter-cyrillic-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';src:url('../fonts/inter-cyrillic-500-normal.woff2') format('woff2');font-weight:500;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';src:url('../fonts/inter-cyrillic-600-normal.woff2') format('woff2');font-weight:600;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Inter';src:url('../fonts/inter-cyrillic-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Lora';src:url('../fonts/lora-cyrillic-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Lora';src:url('../fonts/lora-cyrillic-500-normal.woff2') format('woff2');font-weight:500;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Lora';src:url('../fonts/lora-cyrillic-400-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+html[lang=bg] h1{font-size:clamp(2.1rem,4.6vw,3.4rem)}
+html[lang=bg] .hero-wall h1{font-size:clamp(2.3rem,4.6vw,3.6rem)}
+html[lang=bg] h1,html[lang=bg] h2,html[lang=bg] h3,html[lang=bg] .price,html[lang=bg] .pc-price b,html[lang=bg] .mq-track{font-feature-settings:"locl" 0}

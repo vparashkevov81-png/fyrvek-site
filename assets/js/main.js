@@ -35,6 +35,7 @@
 
   /* Contact form: async submit to Web3Forms */
   var form = document.getElementById('contact-form');
+  var BG = document.documentElement.lang === 'bg';
   if (form) {
     var status = document.getElementById('form-status');
     form.addEventListener('submit', function (e) {
@@ -42,7 +43,7 @@
       if (!form.reportValidity()) { return; }
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;
-      btn.textContent = 'Sending\u2026';
+      btn.textContent = BG ? 'Изпращане\u2026' : 'Sending\u2026';
       status.className = 'form-status';
       var payload = new FormData(form);
       var selEl = form.querySelector('#service');
@@ -50,7 +51,7 @@
       var whoName = String(payload.get('name') || '').trim().replace(/\b\w/g, function (c) { return c.toUpperCase(); });
       if (svcName) { payload.set('service', svcName); }
       var svcShort = svcName.replace(/\s*\(.*\)$/, '');
-      payload.set('subject', (selEl && selEl.value !== 'unsure' && svcShort ? svcShort + ' request' : 'New enquiry') + ' from ' + (whoName || 'fyrvek.com'));
+      payload.set('subject', (selEl && selEl.value !== 'unsure' && svcShort ? svcShort + ' request' : 'New enquiry') + ' from ' + (whoName || 'fyrvek.com') + (BG ? ' [BG]' : ''));
       payload.set('from_name', 'FYRVEK website');
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -58,7 +59,11 @@
       }).then(function (r) { return r.json(); }).then(function (data) {
         if (data.success) {
           var svc = (form.querySelector('#service') || {}).value;
-          var msgs = {
+          var msgs = BG ? {
+            'free-audit': 'Благодаря, заявката ви за безплатен одит е получена. До 5 работни дни ще получите три писмени препоръки за имейлите си.',
+            'starter': 'Благодаря, заявката ви е получена. До 24 часа в работни дни ще получите писмена оферта с фиксирана цена, обхват и срокове.',
+            'audit': 'Благодаря, заявката ви за Пълен одит е получена. До 24 часа в работни дни ще потвърдя подробностите и какъв достъп ми трябва.'
+          } : {
             'free-audit': 'Thanks, your free audit request is in. Within 5 working days you get three written fixes for your emails.',
             'starter': 'Thanks, your request is in. Within 24 hours on working days you get a written quote with a fixed price, scope and dates.',
             'audit': 'Thanks, your Journey Audit request is in. Within 24 hours on working days I confirm the details and what access I need.'
@@ -71,24 +76,24 @@
               method: 'POST',
               headers: {'Content-Type': 'application/json', 'revision': '2024-10-15'},
               body: JSON.stringify({data:{type:'event',attributes:{
-                properties:{service: svc || 'unsure', service_label: labels[svc] || 'your project', store_url: String(fd.get('store_url') || '').replace(/^https?:\/\//,'').replace(/\/$/,''), source:'fyrvek.com contact form'},
+                properties:{service: svc || 'unsure', service_label: labels[svc] || 'your project', store_url: String(fd.get('store_url') || '').replace(/^https?:\/\//,'').replace(/\/$/,''), source:'fyrvek.com contact form', lang: BG ? 'bg' : 'en'},
                 metric:{data:{type:'metric',attributes:{name:'Submitted Contact Form'}}},
                 profile:{data:{type:'profile',attributes:{email: String(fd.get('email') || '').trim(), first_name: nm.split(/\s+/)[0] || undefined}}}
               }}})
             }).catch(function(){});
           } catch (err) {}
           form.reset();
-          status.textContent = msgs[svc] || 'Thanks, your message is in. I reply within 24 hours on working days.';
+          status.textContent = msgs[svc] || (BG ? 'Благодаря, съобщението ви е получено. Отговарям до 24 часа в работни дни.' : 'Thanks, your message is in. I reply within 24 hours on working days.');
           status.className = 'form-status ok';
         } else {
           throw new Error(data.message || 'Submission failed');
         }
       }).catch(function () {
-        status.textContent = 'Something went wrong sending the form. Please email hello@fyrvek.com directly.';
+        status.textContent = BG ? 'Нещо се обърка при изпращането. Моля, пишете ми директно на hello@fyrvek.com.' : 'Something went wrong sending the form. Please email hello@fyrvek.com directly.';
         status.className = 'form-status err';
       }).finally(function () {
         btn.disabled = false;
-        btn.textContent = 'Send message';
+        btn.textContent = BG ? 'Изпратете' : 'Send message';
       });
     });
   }
@@ -190,9 +195,10 @@
   var boxes=[].slice.call(f.querySelectorAll('input[type=checkbox]')),cnt=f.querySelector('.fn-count'),msg=f.querySelector('.fn-msg');
   function upd(){var n=boxes.filter(function(b){return b.checked;}).length;
     var miss=boxes.map(function(b){return b.checked?null:b.closest('label').querySelector('b').textContent;}).filter(Boolean);
-    cnt.textContent=n+' of 6';
-    if(n===0)msg.textContent='Tick the flows you have to see what is missing.';
-    else if(n===6)msg.textContent='All six stages covered. The free audit checks how well each one actually works.';
-    else msg.textContent='Missing: '+miss.join(', ')+'. The free audit shows which one to fix first.';}
+    var bg=document.documentElement.lang==='bg';
+    cnt.textContent=n+(bg?' от 6':' of 6');
+    if(n===0)msg.textContent=bg?'Отметнете какво имате, за да видите какво липсва.':'Tick the flows you have to see what is missing.';
+    else if(n===6)msg.textContent=bg?'И шестте етапа са покрити. Безплатният одит проверява колко добре работи всеки от тях.':'All six stages covered. The free audit checks how well each one actually works.';
+    else msg.textContent=(bg?'Липсват: ':'Missing: ')+miss.join(', ')+(bg?'. Безплатният одит показва кое да оправите първо.':'. The free audit shows which one to fix first.');}
   boxes.forEach(function(b){b.addEventListener('change',upd);});
 })();
