@@ -71,7 +71,7 @@
           try {
             var fd = new FormData(form);
             var nm = String(fd.get('name') || '').trim();
-            var labels = {'free-audit':'a free email audit','starter':'a welcome flow and pop-up','audit':'a Journey Audit','retention':'a Retention Sprint','conversion':'a Conversion Sprint','creative':'Campaign Creative','launch':'a Launch Sprint','partnership':'monthly email work','unsure':'your project'};
+            var labels = {'free-audit':'a free email audit','starter':'a welcome flow and pop-up','audit':'a Journey Audit','retention':'a Retention Sprint','conversion':'a Conversion Sprint','creative':'Campaign Creative','launch':'a Launch Sprint','partnership':'monthly email work','product-copy':'product titles and descriptions','unsure':'your project'};
             fetch('https://a.klaviyo.com/client/events/?company_id=UYKBJg', {
               method: 'POST',
               headers: {'Content-Type': 'application/json', 'revision': '2024-10-15'},

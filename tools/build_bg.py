@@ -87,7 +87,7 @@ def build(f):
     if f=='pricing/index.html':
         audits=[g for g in soup.select('.pr-group') if 'Одити' in g.get_text()][0]
         audits.insert_before(BeautifulSoup(PRICING_EXTRA,'html.parser'))
-    html=str(soup).replace('<b>$99</b> <s>$150</s>','<b>49 €</b> <s>79 €</s>').replace('<div class="pa-price"><b>$0</b></div>','<div class="pa-price"><b>0 €</b></div>')
+    html=str(soup).replace('<b>$99</b> <s>$150</s>','<b>49 €</b> <s>79 €</s>').replace('<b>$49</b> <s>$69</s>','<b>20 €</b> <s>30 €</s>').replace('<div class="pa-price"><b>$0</b></div>','<div class="pa-price"><b>0 €</b></div>')
     out=os.path.join('bg',f); os.makedirs(os.path.dirname(out) or 'bg',exist_ok=True)
     open(out,'w').write(html)
     # English page: switch + alternates
